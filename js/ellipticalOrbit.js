@@ -60,7 +60,7 @@ bccEllipticalOrbit.controls.ellipticalOrbit = function(parameters){
 		}
 
 		arrOrbit.push({
-			radius : 25,
+			radius : 12,
 			x : this.parameters.offset,
 			y : this.parameters.offset,
 			d : undefined,
@@ -124,7 +124,7 @@ bccEllipticalOrbit.controls.ellipticalOrbit = function(parameters){
 			.attr("fill", "#999999");
 
 		// show planet motion in a counter clockwise path
-		var interval = this.parameters.revolution-1;
+		var interval = this.parameters.startday;
 		setInterval(function(){
 			// set all circles back to normal
 			var pre = interval+1;
