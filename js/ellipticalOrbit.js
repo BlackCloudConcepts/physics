@@ -146,6 +146,8 @@ bccEllipticalOrbit.controls.ellipticalOrbit = function(parameters){
 					return '#666666';
 				});
 
+			_this.parameters.dataContainer.html('Day : '+(_this.parameters.revolution-interval)+' --- Distance : '+(Math.round(arrOrbit[interval].r*100)/100).toFixed(3)+'&nbsp;million km');
+	
 			interval--;
 			if (interval < 0)
 				interval = _this.parameters.revolution-1;

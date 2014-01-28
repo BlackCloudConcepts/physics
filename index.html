@@ -24,7 +24,22 @@
 <script language="javascript">
 $(document).ready(function(){
 	$('<div>', {'style' : 'color:#333333;font-size:14pt;margin-bottom:15px;'}).appendTo($('#main')).html("Inner Solar System");
-        var myorbit = $('<div>', {'id' : 'myorbit', 'style' : 'float:left;width:450px;'}).appendTo($('#main'));
+        $('<div>', {'id' : 'myorbit', 'style' : 'float:left;width:450px;'}).appendTo($('#main'));
+	var stats = $('<div>', {'style' : 'float:left'}).appendTo($('#main'));
+	$('<div>', {'style' : 'clear:both;'}).appendTo($('main'));
+	$('<div>', {'style' : 'float:left;margin-right:10px;color:#666666;font-size:10pt;width:75px;'}).appendTo(stats).html('Mercury');
+	var statMercury = $('<div>', {'style' : 'float:left;color:#999999;font-size:10pt;'}).appendTo(stats);
+	$('<div>', {'style' : 'clear:both;margin-bottom:10px;'}).appendTo(stats);
+	$('<div>', {'style' : 'float:left;margin-right:10px;color:#666666;font-size:10pt;width:75px;'}).appendTo(stats).html('Venus');
+	var statVenus = $('<div>', {'style' : 'float:left;color:#999999;font-size:10pt;'}).appendTo(stats);
+	$('<div>', {'style' : 'clear:both;margin-bottom:10px;'}).appendTo(stats);
+	$('<div>', {'style' : 'float:left;margin-right:10px;color:#666666;font-size:10pt;width:75px;'}).appendTo(stats).html('Earth');
+	var statEarth = $('<div>', {'style' : 'float:left;color:#999999;font-size:10pt;'}).appendTo(stats);
+	$('<div>', {'style' : 'clear:both;margin-bottom:10px;'}).appendTo(stats);
+	$('<div>', {'style' : 'float:left;margin-right:10px;color:#666666;font-size:10pt;width:75px;'}).appendTo(stats).html('Mars');
+	var statMars = $('<div>', {'style' : 'float:left;color:#999999;font-size:10pt;'}).appendTo(stats);
+	$('<div>', {'style' : 'clear:both;margin-bottom:10px;'}).appendTo(stats);
+	 
 	var offset = 300;
 
 	var svgSelection = d3.select("#myorbit").append("svg")
@@ -37,6 +52,7 @@ $(document).ready(function(){
 	// - http://en.m.wikipedia.org/wiki/Apsis#Planetary_perihelion_and_aphelion
 
 	var orbitMercury = new bccEllipticalOrbit.controls.ellipticalOrbit({
+		dataContainer 	: statMercury,
                 label           : 'mercury',
 		perihelion	: 46.0, 
 		aphelion	: 69.8,
@@ -47,6 +63,7 @@ $(document).ready(function(){
         orbitMercury.load();
 
 	var orbitVenus = new bccEllipticalOrbit.controls.ellipticalOrbit({
+		dataContainer	: statVenus,
 		label		: 'venus',
 		perihelion      : 107.5,
                 aphelion        : 108.9,
@@ -57,6 +74,7 @@ $(document).ready(function(){
 	orbitVenus.load();
 
 	var orbitEarth = new bccEllipticalOrbit.controls.ellipticalOrbit({
+		dataContainer	: statEarth,
 		label		: 'earth',
 		perihelion      : 147.1,
                 aphelion        : 152.1,
@@ -67,6 +85,7 @@ $(document).ready(function(){
 	orbitEarth.load();
 
 	var orbitMars = new bccEllipticalOrbit.controls.ellipticalOrbit({
+		dataContainer	: statMars,
 		label		: 'mars',
 		perihelion      : 206.7,
                 aphelion        : 249.2,
