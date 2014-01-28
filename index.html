@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 	// http://curious.astro.cornell.edu/question.php?number=582
 
-	// CONSTANTS
+	// CONSTANTS (FOR EARTH)
 	var a = 149.6; // semi-major axis of earths elliptical orbit
 	var e = 0.017; // eccentricity of earths orbit
 
@@ -45,7 +45,11 @@ $(document).ready(function(){
 
 	var arrDaysDistance = [];
 	var arrOrbit = [];
-	for (var d = 1; d <= 365; d++){ 
+	// prefer the typical counter-clockwise representation 
+	//   (though either could be correct depending on the viewing orientation) 
+	// so reversed the loop which draws the orbit in the proper direction 
+	//  (though it doesn't matter as all 360 degrees are drawn to complete the ellipse)
+	for (var d = 365; d >= 1; d--){ 
 		var theta = (d/(365.25/360))*(Math.PI/180);
 		var r = (a*(1-(e*e)))/(1+(e*(Math.cos(theta))));
 		arrDaysDistance.push([d,r]);
@@ -56,15 +60,15 @@ $(document).ready(function(){
 		var text = '';
 		if (d%90 == 0)
 			text = (Math.round(r*100)/100).toFixed(3);
-		if (d <= 91){
+		if (d >= 273){
 			color = 'green';
 			if (d%90 == 45)
 				text = 'Spring';
-		} else if (d <= 182){
+		} else if (d >= 182){
 			color = 'red';
 			if (d%90 == 45)
 				text = 'Summer';
-		} else if (d <= 273){
+		} else if (d >= 91){
 			color = 'brown';
 			if (d%90 == 45)
 				text = 'Fall';
@@ -75,7 +79,7 @@ $(document).ready(function(){
 		}
 		x = x+svgOffset;
 		y = y+svgOffset;
-		arrOrbit.push({
+		arrOrbit.unshift({
 			radius : 1, 
 			x : x,
 			y : y,
@@ -153,7 +157,8 @@ $(document).ready(function(){
 		.attr("font-size", "8pt")
 		.attr("fill", "#999999");
 
-	var interval = 1;
+	// show planet motion in a counter clockwise path
+	var interval = 364;
 	setInterval(function(){
 		// set all circles back to normal
 		d3.selectAll('circle')
@@ -172,13 +177,13 @@ $(document).ready(function(){
 				return '#666666';
 			});
 
-		orbitday.html(interval);
+		orbitday.html(365-interval);
 		orbitdistance.html((Math.round(arrOrbit[interval].r*100)/100).toFixed(3));
 
-		interval++;
-		if (interval > 365)
-			interval = 1;
+		interval--;
+		if (interval < 0)
+			interval = 364;
 
-	}, 500);
+	}, 100);
 });
 </script>
