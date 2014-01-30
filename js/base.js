@@ -14,3 +14,7 @@ bccEllipticalOrbit.controls.base = function(parameters){
 		console.log('base doing something');
 	};
 }
+
+bccEllipticalOrbit.controls.base.prototype.doSomethingElse = function(){
+	console.log('base do something else');	
+};
